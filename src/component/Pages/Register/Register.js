@@ -20,6 +20,12 @@ const Register = () => {
         history.push(redirect_url)  })
 e.preventDefault()
     }
+    const signInGmail=()=>{
+      signInGoogle()
+      .then(()=>{
+     history.push(redirect_url)
+                })
+    }
     return (
       <div>
       <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -85,8 +91,12 @@ e.preventDefault()
                 </span>
                 Sign Up
               </button>
-              <button
-              onClick={signInGoogle}
+             
+              
+            </div>
+          </form>
+          <button
+              onClick={signInGmail}
                 className="group relative mt-3 w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-black bg-white border-black hover:bg-gray-100 hover:border-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
               >
                 <span className="absolute left-0 inset-y-0 flex items-center pl-3">
@@ -95,9 +105,6 @@ e.preventDefault()
                 Google Sign in
               </button>
 
-              
-            </div>
-          </form>
         </div>
       </div>
         </div>

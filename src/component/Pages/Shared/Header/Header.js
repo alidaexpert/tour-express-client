@@ -72,7 +72,7 @@ const Header = () => {
                 
                 {/* Profile dropdown */}
               {
-                  user.email ?<div>
+                  user.email ||user.displayName ?<div>
                         <Menu as="div" className="ml-3 z-30 relative">
                   <div className="flex justify-center items-center gap-3">
                   <span className="text-pink-500 lg:block hidden">{user.displayName}</span>
@@ -80,7 +80,7 @@ const Header = () => {
                       <span className="sr-only">Open user menu</span>
                       
                      {
-                       user.photURL ? <img
+                       user.photoURL? <img
                        className="h-8 w-8 rounded-full"
                        src={user.photoURL}
                        alt=""

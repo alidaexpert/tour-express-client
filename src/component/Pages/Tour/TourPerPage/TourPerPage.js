@@ -4,17 +4,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useRef, useState } from 'react';
 import { useHistory, useParams } from 'react-router';
 import {Rating, RatingView } from 'react-simple-star-rating'
+import useAuth from '../../../../hooks/useAuth/useAuth';
 
 
 const TourPerPage = () => {
     const {id}=useParams()
+    const {user}=useAuth()
     const [offer,setOffer]=useState({})
     const {photo,title,price,duration,rating,location,introduction,highlight,groupSize,excluded,included,departureTime,peopleRating,returnTime,tourType,review}=offer
     // const [booking,setBooking]=useState({})
     const history=useHistory()
     // console.log(booking)
     const nameRef=useRef()
-    const emailRef=useRef()
     const phoneRef=useRef()
     const dateRef=useRef()
     const messageRef=useRef()
@@ -30,7 +31,7 @@ fetch(url)
     const bookPackage=(e)=>{
         const packageBook=title
 const name=nameRef.current.value
-const email=emailRef.current.value
+const email=user.email
 const phone=phoneRef.current.value
 const date=dateRef.current.value
 const message=messageRef.current.value
@@ -53,7 +54,7 @@ name,email,phone,date,message,packageBook,person,children,photo,status:"Pending"
             }
         })
         nameRef.current.value=""
-        emailRef.current.value=""
+       
         phoneRef.current.value=""
         dateRef.current.value=""
         messageRef.current.value=""
@@ -178,7 +179,6 @@ e.preventDefault()
                 <h1 className="text-3xl my-2">Book This Package</h1>
               <form className="space-y-4" onSubmit={bookPackage}>
               <input className="p-4 w-full border-2 border-gray-200   rounded-md block" type="text" ref={nameRef} required name="" id="" placeholder=" Full Name" />
-                <input type="email" ref={emailRef} className="p-4 w-full border-2 border-gray-200 rounded-md block" required name="" id="" placeholder=" Email" />
                 <input type="number" ref={phoneRef} className="p-4 w-full border-2 border-gray-200 rounded-md block" required name="" id="" placeholder=" Phone" />
                 <input type="date" ref={dateRef} className="p-4 w-full border-2 border-gray-200 rounded-md block" required name="" id="" placeholder="11/23/2021" />
                <div className="flex gap-3">

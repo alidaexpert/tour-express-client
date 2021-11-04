@@ -2,11 +2,11 @@ import React,{useEffect, useState} from 'react';
 import {Link} from "react-router-dom"
 import useAuth from "../../../hooks/useAuth/useAuth"
 const MyOrder = () => {
-    const {logOut}=useAuth()
+    const {user,logOut}=useAuth()
     const [orders,setOrders]=useState([])
     console.log(orders)
     useEffect(()=>{
-        fetch("https://tour-express.herokuapp.com/booking")
+        fetch(`https://tour-express.herokuapp.com/myorder/${user.email}`)
         .then(res=>res.json())
         .then(data=>setOrders(data))
     },[])

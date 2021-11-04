@@ -6,12 +6,13 @@ import 'react-toastify/dist/ReactToastify.css';
 const ManageAllOrders = () => {
     const {logOut}=useAuth()
     const [orders,setOrders]=useState([])
-    const [order,setOrder]=useState({})
+    // const [status,setStatus]=useState('Pending')
     console.log(orders)
     useEffect(()=>{
         fetch("https://tour-express.herokuapp.com/booking")
         .then(res=>res.json())
         .then(data=>{
+          
             setOrders(data)
         }
             )
@@ -34,27 +35,22 @@ const ManageAllOrders = () => {
     }
 
 const clickApproved=(id)=>{
-    const findData= orders.find(order=>order._id===id)
-    const updateStatus="Approved"
-    const updateOrder={...findData}
-    updateOrder.status=updateStatus
-    setOrder(updateOrder)
+    const updateStatus={status:"Approved"}
     fetch(`https://tour-express.herokuapp.com/booking/${id}`,{
         method:"PUT",
         headers:{
             "content-type":"application/json"
         },
-        body:JSON.stringify(order)
+        body:JSON.stringify(updateStatus)
 
     })
    .then(response=>response.json())
     .then(data=>{
         console.log(data)
         if(data.modifiedCount>0){
-            const check= orders.find(order=>order._id===id)
-            setOrder(check.status)
+            // setStatus("Approved")
             toast("Offer Has been Update Successfully!")
-
+            // history.push("/manage-orders")
 }})
 }
     return (
@@ -99,10 +95,12 @@ const clickApproved=(id)=>{
        <p> <small>Adult: {order.person}</small></p>
         <small>Children: {order.children}</small>
     </div>
-    <div>
+    <div className=''>
 <p className={order.status!=="Approved"?"text-red-500 font-medium":"text-green-700 font-medium"}>{order.status} </p>
 <span className="flex gap-2 mt-2">
-    <button onClick={()=>clickApproved(order._id)} className="bg-indigo-600 border-2 border-indigo-900 text-white px-2">Accept</button>
+   
+     <button onClick={()=>clickApproved(order._id)} className="bg-indigo-600 border-2 border-indigo-900 text-white px-2">Accept</button>
+
     <button onClick={()=>clickDelete(order._id)} className="border-2 text-red-600 px-2 border-pink-600 font-extrabold">X</button></span> 
     </div> 
             </li> )

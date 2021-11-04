@@ -7,7 +7,7 @@ import logo from "../../../images/logo/tourer.svg"
 import useAuth from '../../../hooks/useAuth/useAuth';
 import 'react-toastify/dist/ReactToastify.css';
 const Login = () => {
-  const {
+  const {user,
     error,
     signInGoogle,
     inputPassword,
@@ -16,13 +16,19 @@ const Login = () => {
   const location=useLocation()
   const history=useHistory()
   const redirect_url=location.state?.from || "/my-profile"
- 
+console.log(user)
   const signInWithEmail=e=>{
     signIn()
     .then(()=>{
    history.push(redirect_url)
               })
 e.preventDefault()
+  }
+  const signInGmail=()=>{
+    signInGoogle()
+    .then(()=>{
+   history.push(redirect_url)
+              })
   }
   //  const googleFont=<FontAwesomeIcon icon={faGoogle}></FontAwesomeIcon>
     return (
@@ -108,9 +114,13 @@ e.preventDefault()
                 </span>
                 Sign in
               </button>
-              <button
-                type="submit"
-                onClick={signInGoogle}
+             
+
+              
+            </div>
+          </form>
+          <button
+                onClick={signInGmail}
                 className="group relative mt-3 w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-black bg-white border-black hover:bg-gray-100 hover:border-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
               >
                 <span className="absolute left-0 inset-y-0 flex items-center pl-3">
@@ -118,10 +128,6 @@ e.preventDefault()
                 </span>
                 Google Sign in
               </button>
-
-              
-            </div>
-          </form>
         </div>
       </div>
         </div>
