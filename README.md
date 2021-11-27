@@ -4,10 +4,8 @@
 
 ## Bullet Point About This Site
 
-### 1.This is base on Tourism 
-### 2.Provide exiciting Offers Who love tour 
-### 3.This site have gallery of customer 
-### 4.This Site Have Admin Panel Dynamically
-### 5.My Orders,Manage All Orders, Add Offers And My Profile, Update Profile is dynamic
-### 6.Booking State is dynamical.
+### 1. Tourism API created using node.js, express.js
+### 2. Each tour service has details and the service booking is dynamic
+### 3. Login users can check order, manage all orders, add services in the dashboard
+### 4. Specially implemented private route and JWT token
 
